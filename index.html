@@ -3,638 +3,909 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detetive Metidinha VIP · NS Shoes</title>
+<title>Detetive Metidinha · NS Shoes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Josefin+Sans:wght@300;400;500;600&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --roxo: #3D1152;
+  --roxo-deep: #1a0030;
+  --roxo-mid: #2a0040;
+  --roxo-light: #5a1a7a;
+  --dourado: #C9A84C;
+  --dourado-light: #e2c47a;
+  --dourado-dim: rgba(201,168,76,0.15);
+  --cloud: #F0EEE9;
+  --cloud-dim: rgba(240,238,233,0.6);
+  --cloud-faint: rgba(240,238,233,0.15);
+  --bg: #0d0018;
+}
 
-  :root {
-    --roxo: #3D1152;
-    --roxo2: #5a1a7a;
-    --dourado: #C9A84C;
-    --cloud: #F0EEE9;
-    --bg: #0e0018;
-    --card: #1a0030;
-    --card2: #220040;
-  }
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: var(--bg);
+  color: var(--cloud);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  body {
-    font-family: 'Josefin Sans', sans-serif;
-    background: var(--bg);
-    color: var(--cloud);
-    min-height: 100vh;
-    padding-bottom: 3rem;
-  }
+/* Fundo com textura */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(61,17,82,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 100% 100%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-  /* SPLASH */
-  .splash {
-    background: linear-gradient(160deg, #1a0030 0%, #3D1152 50%, #1a0030 100%);
-    padding: 2.5rem 1.5rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-  }
-  .splash-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-  .splash-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--dourado);
-    letter-spacing: 0.04em;
-    margin-bottom: 4px;
-  }
-  .splash-sub {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: rgba(240,238,233,0.5);
-    text-transform: uppercase;
-  }
-  .etapa-pill {
-    display: inline-block;
-    margin-top: 1rem;
-    background: var(--dourado);
-    color: #1a0030;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    padding: 4px 14px;
-    border-radius: 20px;
-    text-transform: uppercase;
-  }
+/* HEADER */
+.header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2.5rem 1.5rem 2rem;
+  border-bottom: 1px solid var(--dourado-dim);
+  background: linear-gradient(180deg, rgba(61,17,82,0.5) 0%, transparent 100%);
+}
+.header-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: var(--dourado);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+.header-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(201,168,76,0.4));
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--dourado);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+.header-title em {
+  font-style: italic;
+  font-weight: 400;
+}
+.header-sub {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.etapa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--dourado);
+  color: var(--roxo-deep);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 5px 16px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.etapa-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--roxo-deep);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
 
-  /* TABS */
-  .tabs {
-    display: flex;
-    background: #12001f;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .tab {
-    flex: 1;
-    padding: 0.875rem 0.25rem;
-    text-align: center;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(240,238,233,0.4);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-  }
-  .tab.active {
-    color: var(--dourado);
-    border-bottom-color: var(--dourado);
-  }
-  .tab-icon { display: block; font-size: 1.1rem; margin-bottom: 2px; }
+/* TABS */
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  background: rgba(13,0,24,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dourado-dim);
+}
+.tab-btn {
+  flex: 1;
+  padding: 0.85rem 0.5rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cloud-dim);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+.tab-btn.active {
+  color: var(--dourado);
+}
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: var(--dourado);
+}
 
-  .content { padding: 0 1rem; }
+/* SECTIONS */
+.section {
+  display: none;
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 1rem 3rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.section.active { display: block; }
 
-  .tab-panel { display: none; padding-top: 1.25rem; }
-  .tab-panel.active { display: block; }
+/* RANKING */
+.ranking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
+}
+.ranking-header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--dourado);
+  letter-spacing: 0.03em;
+}
+.ranking-total {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+}
 
-  /* RANKING */
-  .ranking-header { text-align: center; margin-bottom: 1.5rem; }
-  .ranking-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-    color: var(--dourado);
-  }
-  .ranking-sub { font-size: 10px; color: rgba(240,238,233,0.4); letter-spacing: 0.1em; margin-top: 2px; }
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.4s ease both;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.rank-card:nth-child(1) { animation-delay: 0.05s; }
+.rank-card:nth-child(2) { animation-delay: 0.1s; }
+.rank-card:nth-child(3) { animation-delay: 0.15s; }
+.rank-card:nth-child(4) { animation-delay: 0.2s; }
+.rank-card:nth-child(5) { animation-delay: 0.25s; }
+.rank-card:nth-child(n+6) { animation-delay: 0.3s; }
 
-  /* PÓDIO */
-  .podium {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 2rem;
-  }
-  .podium-item {
-    flex: 1;
-    max-width: 140px;
-    text-align: center;
-    padding: 1rem 0.5rem 0.75rem;
-    border-radius: 12px 12px 0 0;
-    position: relative;
-  }
-  .podium-item.first {
-    background: linear-gradient(160deg, #3D1152, #5a1a7a);
-    border: 1px solid rgba(201,168,76,0.4);
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .podium-item.second {
-    background: rgba(61,17,82,0.4);
-    border: 1px solid rgba(201,168,76,0.15);
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .podium-item.third {
-    background: rgba(61,17,82,0.2);
-    border: 1px solid rgba(201,168,76,0.08);
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.rank-card.top {
+  background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(61,17,82,0.3) 100%);
+  border-color: rgba(201,168,76,0.25);
+}
+.rank-card.top::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: var(--dourado);
+}
 
-  .podium-rank { font-size: 1.2rem; margin-bottom: 6px; }
-  .podium-avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--dourado);
-    color: #1a0030;
-    font-weight: 600;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 6px;
-  }
-  .podium-item.first .podium-avatar { width: 52px; height: 52px; font-size: 1.3rem; }
-  .podium-name { font-size: 10px; font-weight: 500; color: var(--cloud); line-height: 1.3; }
-  .podium-insta { font-size: 9px; color: var(--dourado); margin-top: 1px; }
-  .podium-pts { font-size: 13px; font-weight: 600; color: var(--dourado); margin-top: 4px; }
+.rank-position {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--cloud-dim);
+  min-width: 24px;
+  text-align: center;
+}
+.rank-card.top .rank-position {
+  color: var(--dourado);
+  font-size: 1.5rem;
+}
 
-  /* 1º lugar com duas pessoas */
-  .podium-duo { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 4px; }
-  .podium-duo .podium-avatar { width: 38px; height: 38px; font-size: 0.95rem; }
-  .podium-duo-names { font-size: 9px; color: var(--cloud); text-align: center; line-height: 1.5; }
+.rank-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+  background: rgba(61,17,82,0.8);
+  border: 1px solid rgba(201,168,76,0.2);
+  color: var(--dourado);
+  letter-spacing: 0;
+}
+.rank-card.top .rank-avatar {
+  background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(61,17,82,0.8));
+  border-color: rgba(201,168,76,0.4);
+}
 
-  /* LISTA */
-  .rank-list { display: flex; flex-direction: column; gap: 6px; }
-  .rank-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--card);
-    border-radius: 10px;
-    padding: 0.625rem 0.875rem;
-    border: 0.5px solid rgba(201,168,76,0.1);
-  }
-  .rank-pos { font-size: 12px; font-weight: 600; color: rgba(240,238,233,0.4); width: 20px; text-align: center; flex-shrink: 0; }
-  .rank-avatar {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(61,17,82,0.8);
-    border: 1px solid rgba(201,168,76,0.25);
-    color: var(--dourado);
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .rank-info { flex: 1; min-width: 0; }
-  .rank-name { font-size: 12px; font-weight: 500; color: var(--cloud); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .rank-insta { font-size: 10px; color: rgba(201,168,76,0.6); }
-  .rank-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 5px; }
-  .rank-bar .fill { height: 100%; background: linear-gradient(90deg, var(--dourado), rgba(201,168,76,0.5)); border-radius: 2px; }
-  .rank-pts { font-size: 13px; font-weight: 600; color: var(--dourado); flex-shrink: 0; }
+.rank-info { flex: 1; min-width: 0; }
+.rank-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--cloud);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+.rank-card.top .rank-name { color: var(--dourado-light); }
+.rank-handle {
+  font-size: 9px;
+  color: var(--cloud-dim);
+  letter-spacing: 0.05em;
+  margin-top: 1px;
+}
 
-  /* ETAPAS */
-  .etapas-list { display: flex; flex-direction: column; gap: 10px; }
-  .etapa-card {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 1rem;
-    border: 0.5px solid rgba(201,168,76,0.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .etapa-card.ativa { border-color: rgba(201,168,76,0.4); }
-  .etapa-card.concluida { opacity: 0.5; }
-  .etapa-card.bloqueada { opacity: 0.4; }
-  .etapa-status-badge {
-    position: absolute; top: 10px; right: 10px;
-    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 2px 8px; border-radius: 10px;
-  }
-  .badge-ativa { background: rgba(201,168,76,0.15); color: var(--dourado); }
-  .badge-concluida { background: rgba(26,122,62,0.15); color: #4caf50; }
-  .badge-bloqueada { background: rgba(255,255,255,0.05); color: rgba(240,238,233,0.3); }
-  .etapa-num { font-size: 10px; letter-spacing: 0.15em; color: rgba(201,168,76,0.6); text-transform: uppercase; margin-bottom: 4px; }
-  .etapa-nome { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--cloud); margin-bottom: 4px; }
-  .etapa-periodo { font-size: 10px; color: rgba(240,238,233,0.4); margin-bottom: 8px; }
-  .etapa-premio { font-size: 11px; color: var(--dourado); }
-  .etapa-premio span { background: rgba(201,168,76,0.1); padding: 2px 8px; border-radius: 8px; }
+.rank-points {
+  text-align: right;
+  flex-shrink: 0;
+}
+.rank-pts-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--cloud);
+  line-height: 1.1;
+}
+.rank-card.top .rank-pts-num { color: var(--dourado); }
+.rank-pts-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+}
 
-  /* REGRAS */
-  .regras-intro {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 1.25rem;
-    border: 0.5px solid rgba(201,168,76,0.2);
-    margin-bottom: 1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    color: rgba(240,238,233,0.75);
-    line-height: 1.7;
-    font-style: italic;
-    text-align: center;
-  }
-  .regras-section { margin-bottom: 1rem; }
-  .regras-section-title {
-    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--dourado); margin-bottom: 8px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .regras-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(201,168,76,0.15); }
-  .regra-item {
-    display: flex; align-items: flex-start; gap: 8px;
-    padding: 8px 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.04);
-    font-size: 12px; color: rgba(240,238,233,0.7); line-height: 1.5;
-  }
-  .regra-item:last-child { border-bottom: none; }
-  .regra-dot { color: var(--dourado); flex-shrink: 0; margin-top: 1px; }
+.rank-bar-wrap {
+  margin-top: 0.5rem;
+  height: 2px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.rank-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--dourado), var(--dourado-light));
+  border-radius: 1px;
+  transition: width 1s ease;
+}
 
-  .final-card {
-    background: linear-gradient(135deg, #3D1152, #5a1a7a);
-    border-radius: 12px;
-    padding: 1.25rem;
-    border: 1px solid rgba(201,168,76,0.3);
-    text-align: center;
-    margin-top: 1rem;
-  }
-  .final-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--dourado); margin-bottom: 0.5rem; }
-  .final-item { font-size: 12px; color: rgba(240,238,233,0.8); margin-bottom: 4px; }
+/* ETAPAS */
+.etapas-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+.etapa-card {
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+  animation: slideIn 0.4s ease both;
+}
+.etapa-card:nth-child(1) { animation-delay: 0.05s; }
+.etapa-card:nth-child(2) { animation-delay: 0.1s; }
+.etapa-card:nth-child(3) { animation-delay: 0.15s; }
+.etapa-card:nth-child(4) { animation-delay: 0.2s; }
+.etapa-card:nth-child(5) { animation-delay: 0.25s; }
 
-  /* HISTÓRICO */
-  .hist-item {
-    background: var(--card);
-    border-radius: 12px;
-    padding: 1rem;
-    border: 0.5px solid rgba(201,168,76,0.1);
-    margin-bottom: 8px;
-  }
-  .hist-data { font-size: 9px; letter-spacing: 0.1em; color: var(--dourado); text-transform: uppercase; margin-bottom: 6px; }
-  .hist-acao { font-size: 12px; color: rgba(240,238,233,0.8); margin-bottom: 8px; line-height: 1.5; }
-  .hist-winners { display: flex; flex-wrap: wrap; gap: 6px; }
-  .hist-winner {
-    background: rgba(201,168,76,0.1);
-    border: 0.5px solid rgba(201,168,76,0.2);
-    border-radius: 8px;
-    padding: 4px 10px;
-    font-size: 11px;
-    color: var(--cloud);
-    display: flex; align-items: center; gap: 5px;
-  }
-  .hist-winner-av {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--dourado); color: #1a0030;
-    font-size: 9px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hist-pts { color: var(--dourado); font-weight: 600; font-size: 10px; }
+.etapa-card.encerrada { border-color: rgba(201,168,76,0.2); }
+.etapa-card.ativa {
+  border-color: var(--dourado);
+  box-shadow: 0 0 20px rgba(201,168,76,0.12);
+}
+.etapa-card.futura { opacity: 0.45; }
 
-  .empty-hist {
-    text-align: center; padding: 2rem;
-    color: rgba(240,238,233,0.3); font-size: 12px;
-  }
+.etapa-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: rgba(255,255,255,0.03);
+}
+.etapa-card.encerrada .etapa-top { background: rgba(201,168,76,0.06); }
+.etapa-card.ativa .etapa-top { background: rgba(201,168,76,0.1); }
+
+.etapa-left {}
+.etapa-num {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.etapa-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--cloud);
+  font-weight: 300;
+}
+.etapa-card.ativa .etapa-title { color: var(--dourado); }
+.etapa-dates {
+  font-size: 9px;
+  color: var(--cloud-dim);
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.etapa-status {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.etapa-card.encerrada .etapa-status {
+  background: rgba(201,168,76,0.15);
+  color: var(--dourado);
+}
+.etapa-card.ativa .etapa-status {
+  background: var(--dourado);
+  color: var(--roxo-deep);
+  font-weight: 700;
+  animation: glow 2s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 8px rgba(201,168,76,0.5); }
+}
+.etapa-card.futura .etapa-status {
+  background: rgba(255,255,255,0.05);
+  color: var(--cloud-dim);
+}
+
+.etapa-bottom {
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.etapa-premio-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.etapa-premio-val {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--dourado);
+  text-transform: uppercase;
+}
+.etapa-winner-wrap { margin-left: auto; text-align: right; }
+.etapa-winner-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.etapa-winner-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--cloud);
+  text-transform: uppercase;
+}
+
+/* HISTÓRICO */
+.historico-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.hist-item {
+  display: flex;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 3px;
+  animation: slideIn 0.4s ease both;
+}
+.hist-item:nth-child(1) { animation-delay: 0.05s; }
+.hist-item:nth-child(2) { animation-delay: 0.1s; }
+.hist-item:nth-child(3) { animation-delay: 0.15s; }
+.hist-item:nth-child(4) { animation-delay: 0.2s; }
+
+.hist-date-wrap { flex-shrink: 0; text-align: center; min-width: 40px; }
+.hist-day {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--dourado);
+  line-height: 1;
+}
+.hist-month {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+}
+
+.hist-content { flex: 1; }
+.hist-acao {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cloud);
+  margin-bottom: 0.4rem;
+}
+.hist-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.hist-chip {
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  color: var(--dourado-light);
+}
+.hist-pts {
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--cloud-dim);
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+/* REGRAS */
+.regras-content { display: flex; flex-direction: column; gap: 1rem; }
+.regra-bloco {
+  padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 3px;
+  animation: slideIn 0.4s ease both;
+}
+.regra-bloco:nth-child(1) { animation-delay: 0.05s; }
+.regra-bloco:nth-child(2) { animation-delay: 0.1s; }
+.regra-bloco:nth-child(3) { animation-delay: 0.15s; }
+.regra-icon { font-size: 1.3rem; margin-bottom: 0.4rem; }
+.regra-titulo {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 0.5rem;
+}
+.regra-texto {
+  font-size: 10px;
+  line-height: 1.7;
+  color: var(--cloud-dim);
+  letter-spacing: 0.03em;
+}
+.regra-item {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 10px;
+  color: var(--cloud-dim);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+.regra-item:last-child { border-bottom: none; }
+.regra-item-pts {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--dourado);
+  flex-shrink: 0;
+  min-width: 20px;
+  font-weight: 400;
+}
+
+/* Section titles */
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--dourado);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--dourado-dim);
+}
+
+/* Rodapé */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: rgba(240,238,233,0.2);
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
 </style>
 </head>
 <body>
 
-<div class="splash">
-  <div class="splash-icon">🕵🏻</div>
-  <div class="splash-title">Detetive Metidinha</div>
-  <div class="splash-sub">NS Shoes · Game Oficial · Grupo VIP</div>
-  <div class="etapa-pill">⚡ Etapa 2 — Em andamento</div>
+<div class="header">
+  <div class="header-eyebrow">NS Shoes · Grupo VIP</div>
+  <span class="header-icon">🔍</span>
+  <div class="header-title"><em>Detetive</em> Metidinha</div>
+  <div class="header-sub">Campanha Especial de Lançamento</div>
+  <div class="etapa-badge">● Etapa 3 · Em andamento</div>
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="switchTab('ranking')">
-    <span class="tab-icon">🏆</span>Ranking
+  <button class="tab-btn active" onclick="showTab('ranking')">Ranking</button>
+  <button class="tab-btn" onclick="showTab('etapas')">Etapas</button>
+  <button class="tab-btn" onclick="showTab('historico')">Histórico</button>
+  <button class="tab-btn" onclick="showTab('regras')">Regras</button>
+</div>
+
+<!-- RANKING -->
+<div class="section active" id="tab-ranking">
+  <div class="ranking-header">
+    <div class="ranking-header-title">Placar Geral</div>
+    <div class="ranking-total">11 metidinhas</div>
   </div>
-  <div class="tab" onclick="switchTab('etapas')">
-    <span class="tab-icon">🎯</span>Etapas
-  </div>
-  <div class="tab" onclick="switchTab('regras')">
-    <span class="tab-icon">📋</span>Regras
-  </div>
-  <div class="tab" onclick="switchTab('historico')">
-    <span class="tab-icon">📜</span>Histórico
+
+  <div id="ranking-list"></div>
+</div>
+
+<!-- ETAPAS -->
+<div class="section" id="tab-etapas">
+  <div class="section-title">Etapas do Jogo</div>
+  <div class="etapas-grid">
+
+    <div class="etapa-card encerrada">
+      <div class="etapa-top">
+        <div class="etapa-left">
+          <div class="etapa-num">Etapa 01</div>
+          <div class="etapa-title">A Primeira Pista</div>
+          <div class="etapa-dates">17/03 – 23/03</div>
+        </div>
+        <div class="etapa-status">Encerrada</div>
+      </div>
+      <div class="etapa-bottom">
+        <div>
+          <div class="etapa-premio-label">Prêmio</div>
+          <div class="etapa-premio-val">10% OFF</div>
+        </div>
+        <div class="etapa-winner-wrap">
+          <div class="etapa-winner-label">🏆 Vencedora</div>
+          <div class="etapa-winner-name">Camila Milliatti</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="etapa-card encerrada">
+      <div class="etapa-top">
+        <div class="etapa-left">
+          <div class="etapa-num">Etapa 02</div>
+          <div class="etapa-title">A Trilha Dupla</div>
+          <div class="etapa-dates">24/03 – 30/03</div>
+        </div>
+        <div class="etapa-status">Encerrada</div>
+      </div>
+      <div class="etapa-bottom">
+        <div>
+          <div class="etapa-premio-label">Prêmio</div>
+          <div class="etapa-premio-val">Frete Grátis</div>
+        </div>
+        <div class="etapa-winner-wrap">
+          <div class="etapa-winner-label">🏆 Vencedoras</div>
+          <div class="etapa-winner-name">Mirela & Camila</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="etapa-card ativa">
+      <div class="etapa-top">
+        <div class="etapa-left">
+          <div class="etapa-num">Etapa 03</div>
+          <div class="etapa-title">O Enigma Continua</div>
+          <div class="etapa-dates">31/03 – 06/04</div>
+        </div>
+        <div class="etapa-status">Ao Vivo</div>
+      </div>
+      <div class="etapa-bottom">
+        <div>
+          <div class="etapa-premio-label">Prêmio</div>
+          <div class="etapa-premio-val">15% OFF</div>
+        </div>
+        <div class="etapa-winner-wrap">
+          <div class="etapa-winner-label">🏆 Vencedoras</div>
+          <div class="etapa-winner-name">Mirela & Camila</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="etapa-card futura">
+      <div class="etapa-top">
+        <div class="etapa-left">
+          <div class="etapa-num">Etapa 04</div>
+          <div class="etapa-title">A Testemunha</div>
+          <div class="etapa-dates">07/04 – 13/04</div>
+        </div>
+        <div class="etapa-status">Em Breve</div>
+      </div>
+      <div class="etapa-bottom">
+        <div>
+          <div class="etapa-premio-label">Prêmio</div>
+          <div class="etapa-premio-val">20% OFF</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="etapa-card futura">
+      <div class="etapa-top">
+        <div class="etapa-left">
+          <div class="etapa-num">Etapa 05</div>
+          <div class="etapa-title">O Grande Final</div>
+          <div class="etapa-dates">14/04 – 20/04</div>
+        </div>
+        <div class="etapa-status">Em Breve</div>
+      </div>
+      <div class="etapa-bottom">
+        <div>
+          <div class="etapa-premio-label">Prêmio</div>
+          <div class="etapa-premio-val">Surpresa Especial ✨</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<div class="content">
-
-  <!-- RANKING -->
-  <div class="tab-panel active" id="tab-ranking">
-    <div class="ranking-header">
-      <div class="ranking-title">Ranking Geral</div>
-      <div class="ranking-sub">Etapa 2 · Em andamento · 30/03/2026</div>
-    </div>
-
-    <!-- PÓDIO -->
-    <div class="podium">
-      <!-- 2º lugar -->
-      <div class="podium-item second">
-        <div class="podium-rank">🥈 2º</div>
-        <div class="podium-avatar">D</div>
-        <div class="podium-name">Dani Passarelli</div>
-        <div class="podium-pts">4 pts</div>
-        <div class="rank-bar" style="margin-top:6px;width:100%"><div class="fill" style="width:80%"></div></div>
-      </div>
-      <!-- 1º lugar — empatadas -->
-      <div class="podium-item first">
-        <div class="podium-rank">🥇 1º</div>
-        <div class="podium-duo">
-          <div>
-            <div class="podium-avatar">M</div>
-            <div style="font-size:9px;color:var(--cloud);margin-top:3px;">Mirela</div>
-          </div>
-          <div>
-            <div class="podium-avatar">C</div>
-            <div style="font-size:9px;color:var(--cloud);margin-top:3px;">Camila</div>
-          </div>
-        </div>
-        <div class="podium-pts">5 pts cada</div>
-        <div class="rank-bar" style="margin-top:6px;width:100%"><div class="fill" style="width:100%"></div></div>
-      </div>
-      <!-- 3º — vazio -->
-      <div class="podium-item third">
-        <div class="podium-rank">🥉 3º</div>
-        <div class="podium-avatar" style="background:rgba(61,17,82,0.4);border:1px dashed rgba(201,168,76,0.2);color:rgba(240,238,233,0.2);">?</div>
-        <div class="podium-name" style="color:rgba(240,238,233,0.25);">Em disputa</div>
-        <div class="podium-pts" style="color:rgba(201,168,76,0.3);">—</div>
-      </div>
-    </div>
-
-    <!-- LISTA COMPLETA -->
-    <div class="rank-list">
-
-      <div class="rank-item">
-        <div class="rank-pos">1</div>
-        <div class="rank-avatar">M</div>
-        <div class="rank-info">
-          <div class="rank-name">Mirela Rodrigues</div>
-          <div class="rank-bar"><div class="fill" style="width:100%"></div></div>
-        </div>
-        <div class="rank-pts">5 pts</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">1</div>
-        <div class="rank-avatar">C</div>
-        <div class="rank-info">
-          <div class="rank-name">Camila Milliatti</div>
-          <div class="rank-insta">@milliatti</div>
-          <div class="rank-bar"><div class="fill" style="width:100%"></div></div>
-        </div>
-        <div class="rank-pts">5 pts</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">3</div>
-        <div class="rank-avatar">D</div>
-        <div class="rank-info">
-          <div class="rank-name">Dani Passarelli</div>
-          <div class="rank-bar"><div class="fill" style="width:80%"></div></div>
-        </div>
-        <div class="rank-pts">4 pts</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">R</div>
-        <div class="rank-info">
-          <div class="rank-name">Rita</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">S</div>
-        <div class="rank-info">
-          <div class="rank-name">Sabrina</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">B</div>
-        <div class="rank-info">
-          <div class="rank-name">Bia Rossini</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">D</div>
-        <div class="rank-info">
-          <div class="rank-name">Danuza</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">A</div>
-        <div class="rank-info">
-          <div class="rank-name">Anne Crivellari</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">P</div>
-        <div class="rank-info">
-          <div class="rank-name">Pamela</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">P</div>
-        <div class="rank-info">
-          <div class="rank-name">Paolla</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-      <div class="rank-item">
-        <div class="rank-pos">4</div>
-        <div class="rank-avatar">A</div>
-        <div class="rank-info">
-          <div class="rank-name">Amanda Vinha</div>
-          <div class="rank-bar"><div class="fill" style="width:20%"></div></div>
-        </div>
-        <div class="rank-pts">1 pt</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ETAPAS -->
-  <div class="tab-panel" id="tab-etapas">
-    <div class="etapas-list">
-
-      <div class="etapa-card concluida">
-        <div class="etapa-status-badge badge-concluida">✓ Concluída</div>
-        <div class="etapa-num">Etapa 1</div>
-        <div class="etapa-nome">Semana 1</div>
-        <div class="etapa-periodo">17/03 – 23/03</div>
-        <div class="etapa-premio">🎁 Prêmio: <span>10% OFF</span></div>
-      </div>
-
-      <div class="etapa-card ativa">
-        <div class="etapa-status-badge badge-ativa">⚡ Ao vivo</div>
-        <div class="etapa-num">Etapa 2</div>
-        <div class="etapa-nome">Semana 2</div>
-        <div class="etapa-periodo">24/03 – 30/03</div>
-        <div class="etapa-premio">🎁 Prêmio: <span>Frete grátis</span></div>
-      </div>
-
-      <div class="etapa-card bloqueada">
-        <div class="etapa-status-badge badge-bloqueada">🔒 Em breve</div>
-        <div class="etapa-num">Etapa 3</div>
-        <div class="etapa-nome">Semana 3</div>
-        <div class="etapa-periodo">A divulgar</div>
-        <div class="etapa-premio">🎁 Prêmio: <span>15% OFF</span></div>
-      </div>
-
-      <div class="etapa-card bloqueada">
-        <div class="etapa-status-badge badge-bloqueada">🔒 Em breve</div>
-        <div class="etapa-num">Etapa 4</div>
-        <div class="etapa-nome">Semana 4</div>
-        <div class="etapa-periodo">A divulgar</div>
-        <div class="etapa-premio">🎁 Prêmio: <span>20% OFF</span></div>
-      </div>
-
-      <div class="etapa-card bloqueada">
-        <div class="etapa-status-badge badge-bloqueada">🔒 Em breve</div>
-        <div class="etapa-num">Etapa 5</div>
-        <div class="etapa-nome">Semana 5</div>
-        <div class="etapa-periodo">A divulgar</div>
-        <div class="etapa-premio">🏆 <span>Pontos para a Grande Final</span></div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- REGRAS -->
-  <div class="tab-panel" id="tab-regras">
-
-    <div class="regras-intro">
-      "Vocês estão aqui porque fazem parte da história da NS 💜 antes de todo mundo."
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">🎮 Como funciona</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Toda vez que eu aparecer no grupo, vocês recebem: 1 pista, ativações ao longo da semana e conteúdos para compartilhar</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Cada ação vale 1 ponto</div>
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">💡 Como ganhar pontos</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>As pistas são liberadas só no grupo VIP — esse é o único canal do game</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Só ganha ponto quem responder primeiro e certo</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Quem liderar o ranking terá vantagens no jogo</div>
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">📲 Compartilhando conteúdo</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Postar nos stories e marcar @NS — o perfil precisa estar público</div>
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">🔥 Ativações extras</div>
-      <div class="regra-item"><span class="regra-dot">•</span>Responder enquete</div>
-      <div class="regra-item"><span class="regra-dot">•</span>Interagir aqui e no Instagram</div>
-      <div class="regra-item"><span class="regra-dot">•</span>Indicar uma amiga pro grupo VIP</div>
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">🏆 Ranking</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Toda semana teremos uma vencedora</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Quem somar mais pontos no total ganha a Grande Final</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>É constância: quanto mais você participa, mais chances tem</div>
-    </div>
-
-    <div class="regras-section">
-      <div class="regras-section-title">📌 Regras importantes</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>1 cupom por compra (não acumulativo — vale o maior)</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Empate semanal: ganha quem respondeu mais rápido</div>
-      <div class="regra-item"><span class="regra-dot">📍</span>Empate final: velocidade + participação</div>
-    </div>
-
-    <div class="final-card">
-      <div class="final-title">🏆 Grande Final</div>
-      <div class="final-item">✨ Presente surpresa 🎁</div>
-      <div class="final-item">✨ Título de <strong>Detetive Metidinha Oficial</strong> 🕵🏻💜</div>
-      <div class="final-item" style="font-size:10px;color:rgba(240,238,233,0.4);margin-top:8px;">O dia da final será avisado aqui no grupo</div>
-    </div>
-
-  </div>
-
-  <!-- HISTÓRICO -->
-  <div class="tab-panel" id="tab-historico">
+<!-- HISTÓRICO -->
+<div class="section" id="tab-historico">
+  <div class="section-title">Histórico de Pontuações</div>
+  <div class="historico-list">
 
     <div class="hist-item">
-      <div class="hist-data">📅 30/03/2026 · Etapa 2</div>
-      <div class="hist-acao">🔍 Ação: Conseguir agentes seguidoras — cada participante que trouxe novas seguidoras para o perfil da NS ganhou 3 pontos</div>
-      <div class="hist-winners">
-        <div class="hist-winner"><div class="hist-winner-av">D</div> Dani Passarelli <span class="hist-pts">+3 pts</span></div>
-        <div class="hist-winner"><div class="hist-winner-av">M</div> Mirela Rodrigues <span class="hist-pts">+3 pts</span></div>
-        <div class="hist-winner"><div class="hist-winner-av">C</div> Camila Milliatti <span class="hist-pts">+3 pts</span></div>
+      <div class="hist-date-wrap">
+        <div class="hist-day">06</div>
+        <div class="hist-month">Abr</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Ação — Etapa 3</div>
+        <div class="hist-names">
+          <span class="hist-chip">Mirela Rodrigues</span>
+          <span class="hist-chip">Camila Milliatti</span>
+        </div>
+        <div class="hist-pts">+2 pontos cada</div>
       </div>
     </div>
 
     <div class="hist-item">
-      <div class="hist-data">📅 27/03/2026 · Etapa 2</div>
-      <div class="hist-acao">🔍 Vencedoras da semana — acúmulo de pontos anteriores</div>
-      <div class="hist-winners">
-        <div class="hist-winner"><div class="hist-winner-av">M</div> Mirela Rodrigues <span class="hist-pts">2 pts</span></div>
-        <div class="hist-winner"><div class="hist-winner-av">C</div> Camila Milliatti <span class="hist-pts">2 pts</span></div>
+      <div class="hist-date-wrap">
+        <div class="hist-day">02</div>
+        <div class="hist-month">Abr</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Comentário no Post</div>
+        <div class="hist-names">
+          <span class="hist-chip">Dani Passarelli</span>
+          <span class="hist-chip">Mirela Rodrigues</span>
+          <span class="hist-chip">Camila Milliatti</span>
+          <span class="hist-chip">Paolla</span>
+        </div>
+        <div class="hist-pts">+2 pontos cada</div>
       </div>
     </div>
 
     <div class="hist-item">
-      <div class="hist-data">📅 23/03/2026 · Etapa 1</div>
-      <div class="hist-acao">🔍 Enigma da foto do feed — resposta: <strong style="color:var(--dourado)">conexão</strong></div>
-      <div class="hist-winners">
-        <div class="hist-winner"><div class="hist-winner-av">C</div> Camila Milliatti <span class="hist-pts">+1 pt</span></div>
+      <div class="hist-date-wrap">
+        <div class="hist-day">30</div>
+        <div class="hist-month">Mar</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Agentes Seguidoras</div>
+        <div class="hist-names">
+          <span class="hist-chip">Dani Passarelli</span>
+          <span class="hist-chip">Mirela Rodrigues</span>
+          <span class="hist-chip">Camila Milliatti</span>
+        </div>
+        <div class="hist-pts">+3 pontos cada</div>
+      </div>
+    </div>
+
+    <div class="hist-item">
+      <div class="hist-date-wrap">
+        <div class="hist-day">27</div>
+        <div class="hist-month">Mar</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Enigma — Foto no Feed</div>
+        <div class="hist-names">
+          <span class="hist-chip">Mirela Rodrigues</span>
+        </div>
+        <div class="hist-pts">+2 pontos</div>
+      </div>
+    </div>
+
+    <div class="hist-item">
+      <div class="hist-date-wrap">
+        <div class="hist-day">25</div>
+        <div class="hist-month">Mar</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Interação nos Stories</div>
+        <div class="hist-names">
+          <span class="hist-chip">Camila Milliatti</span>
+          <span class="hist-chip">Rita</span>
+          <span class="hist-chip">Sabrina</span>
+          <span class="hist-chip">Bia Rossini</span>
+          <span class="hist-chip">Danuza</span>
+          <span class="hist-chip">Anne Crivellari</span>
+          <span class="hist-chip">Pamela</span>
+          <span class="hist-chip">Paolla</span>
+          <span class="hist-chip">Dani Passarelli</span>
+          <span class="hist-chip">Amanda Vinha</span>
+        </div>
+        <div class="hist-pts">+1 ponto cada</div>
+      </div>
+    </div>
+
+    <div class="hist-item">
+      <div class="hist-date-wrap">
+        <div class="hist-day">23</div>
+        <div class="hist-month">Mar</div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-acao">Enigma — 1ª Pista (Etapa 1)</div>
+        <div class="hist-names">
+          <span class="hist-chip">Camila Milliatti</span>
+        </div>
+        <div class="hist-pts">+1 ponto · Vencedora Etapa 1 🏆</div>
       </div>
     </div>
 
   </div>
-
 </div>
+
+<!-- REGRAS -->
+<div class="section" id="tab-regras">
+  <div class="section-title">Como Funciona</div>
+  <div class="regras-content">
+
+    <div class="regra-bloco">
+      <div class="regra-icon">🔍</div>
+      <div class="regra-titulo">O Jogo</div>
+      <div class="regra-texto">
+        Um mistério se desenrola semana a semana. Cada etapa traz pistas, enigmas e ações exclusivas para o grupo VIP. Acumule pontos, suba no ranking e concorra a prêmios especiais da NS Shoes.
+      </div>
+    </div>
+
+    <div class="regra-bloco">
+      <div class="regra-icon">⭐</div>
+      <div class="regra-titulo">Como Ganhar Pontos</div>
+      <div class="regra-item"><span class="regra-item-pts">+1</span><span>Responder corretamente uma pista</span></div>
+      <div class="regra-item"><span class="regra-item-pts">+1</span><span>Interagir nos stories da NS Shoes</span></div>
+      <div class="regra-item"><span class="regra-item-pts">+1</span><span>Compartilhar conteúdo no feed</span></div>
+      <div class="regra-item"><span class="regra-item-pts">+2</span><span>Comentar no post oficial da semana</span></div>
+      <div class="regra-item"><span class="regra-item-pts">+3</span><span>Indicar uma nova agente seguidora</span></div>
+      <div class="regra-item"><span class="regra-item-pts">✨</span><span>Bônus especial por ativações surpresa</span></div>
+    </div>
+
+    <div class="regra-bloco">
+      <div class="regra-icon">🏆</div>
+      <div class="regra-titulo">Prêmios por Etapa</div>
+      <div class="regra-item"><span class="regra-item-pts">1</span><span>10% OFF em qualquer peça</span></div>
+      <div class="regra-item"><span class="regra-item-pts">2</span><span>Frete Grátis</span></div>
+      <div class="regra-item"><span class="regra-item-pts">3</span><span>15% OFF em qualquer peça</span></div>
+      <div class="regra-item"><span class="regra-item-pts">4</span><span>20% OFF em qualquer peça</span></div>
+      <div class="regra-item"><span class="regra-item-pts">5</span><span>Grande Final — Prêmio Surpresa ✨</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">NS Shoes · Grupo VIP Detetive Metidinha · 2026</div>
 
 <script>
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach((t, i) => {
-    const ids = ['ranking','etapas','regras','historico'];
-    t.classList.toggle('active', ids[i] === id);
-  });
-  document.querySelectorAll('.tab-panel').forEach(p => {
-    p.classList.toggle('active', p.id === 'tab-' + id);
-  });
-}
-</script>
+const players = [
+  { name: "Mirela Rodrigues",  initials: "MR", pts: 9 },
+  { name: "Camila Milliatti",  initials: "CM", pts: 9, handle: "@milliatti" },
+  { name: "Dani Passarelli",   initials: "DP", pts: 6 },
+  { name: "Paolla",            initials: "PA", pts: 3 },
+  { name: "Rita",              initials: "RI", pts: 1 },
+  { name: "Sabrina",           initials: "SA", pts: 1 },
+  { name: "Bia Rossini",       initials: "BR", pts: 1 },
+  { name: "Danuza",            initials: "DA", pts: 1 },
+  { name: "Anne Crivellari",   initials: "AC", pts: 1 },
+  { name: "Pamela",            initials: "PM", pts: 1 },
+  { name: "Amanda Vinha",      initials: "AV", pts: 1 },
+];
 
+const maxPts = Math.max(...players.map(p => p.pts));
+
+function buildRanking() {
+  const list = document.getElementById('ranking-list');
+  let lastPts = null, pos = 0, display = 0;
+
+  players.forEach((p, i) => {
+    display++;
+    if (p.pts !== lastPts) { pos = display; }
+    lastPts = p.pts;
+
+    const isTop = pos <= 3;
+    const pct = Math.round((p.pts / maxPts) * 100);
+
+    const card = document.createElement('div');
+    card.className = 'rank-card' + (isTop ? ' top' : '');
+
+    card.innerHTML = `
+      <div class="rank-position">${pos}</div>
+      <div class="rank-avatar">${p.initials}</div>
+      <div class="rank-info">
+        <div class="rank-name">${p.name}</div>
+        ${p.handle ? `<div class="rank-handle">${p.handle}</div>` : ''}
+        <div class="rank-bar-wrap">
+          <div class="rank-bar" style="width:0%" data-pct="${pct}"></div>
+        </div>
+      </div>
+      <div class="rank-points">
+        <div class="rank-pts-num">${p.pts}</div>
+        <div class="rank-pts-label">pts</div>
+      </div>
+    `;
+
+    list.appendChild(card);
+  });
+
+  // Animar barras
+  setTimeout(() => {
+    document.querySelectorAll('.rank-bar').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 300);
+}
+
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+buildRanking();
+</script>
 </body>
 </html>
